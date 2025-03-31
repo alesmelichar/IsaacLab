@@ -5,7 +5,7 @@ from isaaclab.utils.assets import check_file_path
 
 A0509_CFG = ArticulationCfg(
     spawn=sim_utils.UsdFileCfg(
-        usd_path=r"C:\Users\alesm\AppData\Local\ov\data\Kit\Isaac-Sim Full\4.5\exts\3\isaacsim.asset.importer.urdf-2.3.14+106.5.0.wx64.r.cp310\data\urdf\robots\a0509\urdf\a0509\a0509.usd",
+        usd_path=r"D:\IsaacLab\source\isaaclab_assets\isaaclab_assets\robots\a0509",
         activate_contact_sensors=False,
         rigid_props=sim_utils.RigidBodyPropertiesCfg(
             disable_gravity=False,
