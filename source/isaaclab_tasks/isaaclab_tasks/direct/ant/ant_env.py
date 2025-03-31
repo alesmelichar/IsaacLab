@@ -16,7 +16,7 @@ from isaaclab.terrains import TerrainImporterCfg
 from isaaclab.utils import configclass
 
 from isaaclab_tasks.direct.locomotion.locomotion_env import LocomotionEnv
-
+import gymnasium as gym
 
 @configclass
 class AntEnvCfg(DirectRLEnvCfg):
@@ -24,7 +24,7 @@ class AntEnvCfg(DirectRLEnvCfg):
     episode_length_s = 15.0
     decimation = 2
     action_scale = 0.5
-    action_space = 8
+    action_space = gym.spaces.Box(low=-1.0, high=1.0, shape=(8,))
     observation_space = 36
     state_space = 0
 
