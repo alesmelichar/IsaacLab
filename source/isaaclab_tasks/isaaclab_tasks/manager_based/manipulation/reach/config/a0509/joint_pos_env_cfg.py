@@ -32,12 +32,15 @@ class A0509ReachEnvCfg(ReachEnvCfg):
 
         # switch robot to A0509
         self.scene.robot = A0509_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
+        
         # override events
         self.events.reset_robot_joints.params["position_range"] = (0.75, 1.25)
+
         # override rewards
         self.rewards.end_effector_position_tracking.params["asset_cfg"].body_names = ["link_6"]
         self.rewards.end_effector_position_tracking_fine_grained.params["asset_cfg"].body_names = ["link_6"]
         self.rewards.end_effector_orientation_tracking.params["asset_cfg"].body_names = ["link_6"]
+
         # override actions
         self.actions.arm_action = mdp.JointPositionActionCfg(
             asset_name="robot", joint_names=[".*"], scale=0.5, use_default_offset=True

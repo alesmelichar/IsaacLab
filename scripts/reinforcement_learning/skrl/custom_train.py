@@ -178,6 +178,7 @@ class Critic(DeterministicMixin, Model):
 AVAILABLE_ENVS = {
     "1": "Isaac-Lift-Cube-Franka-v0",
     "2": "Isaac-Repose-Cube-Shadow-Direct-v0",
+    "3": "Isaac-Cartpole-Direct-v0",
 }
 
 # Environment selection
