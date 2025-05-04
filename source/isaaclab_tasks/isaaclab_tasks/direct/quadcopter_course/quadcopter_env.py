@@ -125,13 +125,13 @@ class QuadcopterEnv(DirectRLEnv):
         self._body_id = self._robot.find_bodies("body")[0]
 
         # ELITECH25: Give the robot a mass uniformly distributed around the center of mass
-        nominal_masses = self._robot.root_physx_view.get_masses()
-        weight_factor  = random.uniform(0.8, 1.2)
+        # nominal_masses = self._robot.root_physx_view.get_masses()
+        # weight_factor  = 1.0
 
-        print("Weight factor: ", weight_factor)
-        robot_masses =  nominal_masses * weight_factor
-        env_indices = self._robot._ALL_INDICES.cpu()
-        self._robot.root_physx_view.set_masses(robot_masses, env_indices)
+        # print("Weight factor: ", weight_factor)
+        # robot_masses =  nominal_masses * weight_factor
+        # env_indices = self._robot._ALL_INDICES.cpu()
+        # self._robot.root_physx_view.set_masses(robot_masses, env_indices)
         
         ## END ELITECH25
 
