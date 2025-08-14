@@ -85,35 +85,7 @@ for i in range(10):
     memory = RandomMemory(memory_size=20000, num_envs=env.num_envs, device=device)
 
 
-    # instantiate the agent's models (function approximators).
-    # SAC requires 5 models, visit its documentation for more details
-    # https://skrl.readthedocs.io/en/latest/api/agents/sac.html#models
-    models = {}
-    models["policy"] = StochasticActor(env.observation_space, env.action_space, device)
-    models["critic_1"] = Critic(env.observation_space, env.action_space, device)
-    models["critic_2"] = Critic(env.observation_space, env.action_space, device)
-    models["target_critic_1"] = Critic(env.observation_space, env.action_space, device)
-    models["target_critic_2"] = Critic(env.observation_space, env.action_space, device)
-
-    set_seed(i)
-    print(f"[INFO] Running experiment {i}")
-    cfg["experiment"]["experiment_name"] = f"run_{i}"
-
-    agent = SAC(models=models,
-                memory=memory,
-                cfg=cfg,
-                observation_space=env.observation_space,
-                action_space=env.action_space,
-                device=device)
-
-
-    # configure and instantiate the RL trainer
-    cfg_trainer = {"timesteps": 200000, "headless": True}
-    trainer = SequentialTrainer(cfg=cfg_trainer, env=env, agents=agent)
-
-    # start training
-    trainer.train()
-
-# path = "/home/urkui-3/Documents/Ales/IsaacLab/runs/torch/Isaac-Ant-v0/25-05-04_10-48-19-834956_SAC/checkpoints/best_agent.pt"
-# agent.load(path)
-# trainer.eval()
+# start training
+# trainer.train()
+agent.load(r"D:\IsaacLab\source\isaaclab_tasks\isaaclab_tasks\direct\humanoid\best_agent.pt")
+trainer.eval()
