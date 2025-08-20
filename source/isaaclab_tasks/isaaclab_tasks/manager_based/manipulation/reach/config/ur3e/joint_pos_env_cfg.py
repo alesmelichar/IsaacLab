@@ -35,23 +35,31 @@ class UR3eReachEnvCfg(ReachEnvCfg):
         self.rewards.end_effector_position_tracking.params["asset_cfg"].body_names = ["ee_link"]
         self.rewards.end_effector_position_tracking_fine_grained.params["asset_cfg"].body_names = ["ee_link"]
         self.rewards.end_effector_orientation_tracking.params["asset_cfg"].body_names = ["ee_link"]
+        
         # override actions
         self.actions.arm_action = mdp.JointPositionActionCfg(
-            asset_name="robot", joint_names=[".*"], scale=0.5, use_default_offset=True
+            asset_name="robot", 
+            joint_names=[".*"], 
+            scale=0.5, 
+            use_default_offset=True
         )
         # override command generator body
         # end-effector is along x-direction
         self.commands.ee_pose.body_name = "ee_link"
         self.commands.ee_pose.ranges.pitch = (math.pi / 2, math.pi / 2)
 
+        self.commands.ee_pose.ranges.pos_x = (0.35, 0.4)
+        self.commands.ee_pose.ranges.pos_y = (-0.1, 0.1)
+        self.commands.ee_pose.ranges.pos_z = (0.15, 0.45)
+
 
 @configclass
-class UR3eReachEnvCfg(UR3eReachEnvCfg):
+class UR3eReachEnvCfg_PLAY(UR3eReachEnvCfg):
     def __post_init__(self):
         # post init of parent
         super().__post_init__()
         # make a smaller scene for play
-        self.scene.num_envs = 50
+        self.scene.num_envs = 4
         self.scene.env_spacing = 2.5
         # disable randomization for play
         self.observations.policy.enable_corruption = False
